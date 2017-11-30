@@ -7,8 +7,8 @@ Mappings:
     Public:
       CIDR: 192.168.1.0/24
   SelectedAMI:
-    AmazonAMI: ami-ff4ea59d
-    UbuntuAMI: ami-cab258a8
+    AmazonAMI: "ami-ff4ea59d"
+    UbuntuAMI: "ami-cab258a8"
 Resources:
   VPC:
     Type: 'AWS::EC2::VPC'
