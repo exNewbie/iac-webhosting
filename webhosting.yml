@@ -22,10 +22,8 @@ Resources:
         - VPC
         - CIDR
       Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackName'
         - Key: Name
-          Value: LinuxAcademy
+          Value: !Ref 'AWS::StackName'
         - Key: Network
           Value: Public
   PublicSubnet:
@@ -142,17 +140,19 @@ Resources:
           FromPort: '80'
           ToPort: '80'
           CidrIp: 0.0.0.0/0
-  PublicInstance:
-    Type: 'AWS::EC2::Instance'
-    DependsOn: GatewayToInternet
-    Properties:
-      InstanceType: t2.micro
-      ImageId: !FindInMap [ SelectedAMI, Amazon, ID ]
-      NetworkInterfaces:
-        - GroupSet:
-            - !Ref EC2SecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
-          SubnetId: !Ref PublicSubnet
 
+# Optional services
+#  PublicInstance:
+#    Type: 'AWS::EC2::Instance'
+#    DependsOn: GatewayToInternet
+#    Properties:
+#      InstanceType: t2.micro
+#      ImageId: !FindInMap [ SelectedAMI, Amazon, ID ]
+#      NetworkInterfaces:
+#        - GroupSet:
+#            - !Ref EC2SecurityGroup
+#          AssociatePublicIpAddress: 'true'
+#          DeviceIndex: '0'
+#          DeleteOnTermination: 'true'
+#          SubnetId: !Ref PublicSubnet
+#
