@@ -7,8 +7,10 @@ Mappings:
     Public:
       CIDR: "192.168.1.0/24"
   SelectedAMI:
-    AmazonAMI: "ami-ff4ea59d"
-    UbuntuAMI: "ami-cab258a8"
+    Amazon:
+      ID: "ami-ff4ea59d"
+    Ubuntu:
+      ID: "ami-cab258a8"
 Resources:
   VPC:
     Type: 'AWS::EC2::VPC'
@@ -145,7 +147,7 @@ Resources:
     DependsOn: GatewayToInternet
     Properties:
       InstanceType: t2.micro
-      ImageId: !FindInMap [ SelectedAMI, AmazonAMI ]
+      ImageId: !FindInMap [ SelectedAMI, Amazon, ID ]
       NetworkInterfaces:
         - GroupSet:
             - !Ref EC2SecurityGroup
