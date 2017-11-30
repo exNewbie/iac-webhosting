@@ -3,9 +3,9 @@ Description: Web hosting Stack
 Mappings:
   SubnetConfig:
     VPC:
-      CIDR: 192.168.0.0/20
+      CIDR: "192.168.0.0/20"
     Public:
-      CIDR: 192.168.1.0/24
+      CIDR: "192.168.1.0/24"
   SelectedAMI:
     AmazonAMI: "ami-ff4ea59d"
     UbuntuAMI: "ami-cab258a8"
@@ -145,9 +145,7 @@ Resources:
     DependsOn: GatewayToInternet
     Properties:
       InstanceType: t2.micro
-      ImageId: !FindInMap
-        - SelectedAMI
-        - AmazonAMI
+      ImageId: !FindInMap [ SelectedAMI, AmazonAMI ]
       NetworkInterfaces:
         - GroupSet:
             - !Ref EC2SecurityGroup
